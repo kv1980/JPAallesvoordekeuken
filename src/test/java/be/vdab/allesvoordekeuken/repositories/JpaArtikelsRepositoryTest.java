@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
+import javax.persistence.EntityManager;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +28,8 @@ import be.vdab.allesvoordekeuken.entities.Artikel;
 public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests{
 	@Autowired
 	private JpaArtikelsRepository repository;
+	@Autowired
+	private EntityManager manager;
 	private static final String ARTIKELS = "artikels";
 	private Artikel artikel;
 	
@@ -56,5 +60,15 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 	@Test
 	public void read_leest_onbestaand_artikel_niet_in() {
 		assertFalse(repository.read(-1L).isPresent());
+	}
+	
+	@Test
+	public void delete_verwijdert_een_artikel() {
+		int aantalArtikels = super.countRowsInTable(ARTIKELS);
+		long id = idVanTestartikel();
+		repository.delete(id);
+		manager.flush();
+		assertEquals(aantalArtikels-1,super.countRowsInTable(ARTIKELS));
+		assertEquals(0,super.countRowsInTableWhere(ARTIKELS,"id = "+id));
 	}
 }

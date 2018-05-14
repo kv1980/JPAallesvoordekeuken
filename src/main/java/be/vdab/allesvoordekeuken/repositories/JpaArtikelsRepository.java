@@ -26,6 +26,8 @@ class JpaArtikelsRepository implements ArtikelsRepository {
 		return Optional.ofNullable(manager.find(Artikel.class,id));
 	}
 
-
-	
+	@Override
+	public void delete(long id) {
+		read(id).ifPresent(artikel -> manager.remove(artikel));	
+	}	
 }

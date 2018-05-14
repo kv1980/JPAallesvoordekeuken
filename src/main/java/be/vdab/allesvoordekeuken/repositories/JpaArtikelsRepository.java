@@ -15,10 +15,17 @@ class JpaArtikelsRepository implements ArtikelsRepository {
 	public JpaArtikelsRepository(EntityManager manager) {
 		this.manager = manager;
 	}
+	
+	@Override
+	public void create(Artikel artikel) {
+		manager.persist(artikel);
+	}
 
 	@Override
 	public Optional<Artikel> read(long id) {
 		return Optional.ofNullable(manager.find(Artikel.class,id));
 	}
+
+
 	
 }

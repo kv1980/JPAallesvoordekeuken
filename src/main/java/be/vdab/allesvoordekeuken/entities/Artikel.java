@@ -17,9 +17,6 @@ public class Artikel implements Serializable{
 	private BigDecimal aankoopprijs;
 	private BigDecimal verkoopprijs;
 	
-	protected Artikel() {
-	}
-	
 	public long getId() {
 		return id;
 	}

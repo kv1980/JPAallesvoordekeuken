@@ -3,6 +3,7 @@ package be.vdab.allesvoordekeuken.repositories;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -70,5 +71,16 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 		manager.flush();
 		assertEquals(aantalArtikels-1,super.countRowsInTable(ARTIKELS));
 		assertEquals(0,super.countRowsInTableWhere(ARTIKELS,"id = "+id));
+	}
+	
+	@Test
+	public void findByWoord_geeft_lijst_met_artikels_met_woord_in_de_naam() {
+		List<Artikel> artikels = repository.findByWoord("testartikel");
+		assertEquals(2,artikels.size());
+		String vorigeArtikelNaam = "";
+		artikels.forEach(artikel -> {
+			assertTrue(artikel.getNaam().toLowerCase().contains("testartikel"));
+			assertTrue(artikel.getNaam().compareToIgnoreCase(vorigeArtikelNaam) >= 0);
+		});
 	}
 }

@@ -1,5 +1,6 @@
 package be.vdab.allesvoordekeuken.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -29,5 +30,12 @@ class JpaArtikelsRepository implements ArtikelsRepository {
 	@Override
 	public void delete(long id) {
 		read(id).ifPresent(artikel -> manager.remove(artikel));	
+	}
+
+	@Override
+	public List<Artikel> findByWoord(String woord) {
+		return manager.createNamedQuery("Artikel.findByWoord",Artikel.class)
+				      .setParameter("patroon","%"+woord+"%")
+				      .getResultList();
 	}	
 }

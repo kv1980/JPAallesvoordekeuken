@@ -1,5 +1,6 @@
 package be.vdab.allesvoordekeuken.repositories;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,12 @@ class JpaArtikelsRepository implements ArtikelsRepository {
 		return manager.createNamedQuery("Artikel.findByWoord",Artikel.class)
 				      .setParameter("patroon","%"+woord+"%")
 				      .getResultList();
+	}
+
+	@Override
+	public int algemenePrijsverhoging(BigDecimal percentage) {
+		return manager.createNamedQuery("Artikel.algemenePrijsverhoging")
+				      .setParameter("factor",BigDecimal.ONE.add(percentage.divide(BigDecimal.valueOf(100))))
+				      .executeUpdate();
 	}	
 }

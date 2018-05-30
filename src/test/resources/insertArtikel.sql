@@ -1,4 +1,4 @@
 insert into artikels(naam,aankoopprijs,verkoopprijs)
-values('testartikel',100,110);
+values('testartikel',100,200);
 insert into artikels(naam,aankoopprijs,verkoopprijs)
-values('testartikel2',200,220);
+values('testartikel2',200,400);

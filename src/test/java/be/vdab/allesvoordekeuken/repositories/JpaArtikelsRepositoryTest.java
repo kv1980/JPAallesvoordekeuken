@@ -73,6 +73,7 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 		assertEquals(0,super.countRowsInTableWhere(ARTIKELS,"id = "+id));
 	}
 	
+	//-----------------------korter---------------------------------
 	@Test
 	public void findByWoord_geeft_lijst_met_artikels_met_woord_in_de_naam() {
 		List<Artikel> artikels = repository.findByWoord("testartikel");
@@ -82,5 +83,13 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 			assertTrue(artikel.getNaam().toLowerCase().contains("testartikel"));
 			assertTrue(artikel.getNaam().compareToIgnoreCase(vorigeArtikelNaam) >= 0);
 		});
+	}
+	
+	@Test
+	public void algemenePrijsverhoging() {
+		int aantalRecordsAangepast = repository.algemenePrijsverhoging(BigDecimal.TEN);
+		assertEquals(super.countRowsInTable(ARTIKELS),aantalRecordsAangepast);
+		BigDecimal nieuweVerkoopprijs = super.jdbcTemplate.queryForObject("select verkoopprijs from artikels where id=?",BigDecimal.class,idVanTestartikel());
+		assertEquals(0,nieuweVerkoopprijs.compareTo(BigDecimal.valueOf(220)));
 	}
 }

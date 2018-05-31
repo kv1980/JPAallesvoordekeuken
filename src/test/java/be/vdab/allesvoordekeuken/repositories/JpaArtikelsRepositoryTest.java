@@ -82,13 +82,13 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 	@Test
 	public void read_leest_bestaand_food_artikel_in() {
 		Optional<Artikel> optioneelArtikel = repository.read(idVanTestartikelFood());
-		assertEquals("testartikelFood",((FoodArtikel) optioneelArtikel.get()).getNaam());
+		assertEquals(7,((FoodArtikel) optioneelArtikel.get()).getHoudbaarheid());
 	}
 	
 	@Test
 	public void read_leest_bestaand_non_food_artikel_in() {
 		Optional<Artikel> optioneelArtikel = repository.read(idVanTestartikelNonFood());
-		assertEquals("testartikelNonFood",((NonFoodArtikel) optioneelArtikel.get()).getNaam());
+		assertEquals(12,((NonFoodArtikel) optioneelArtikel.get()).getGarantie());
 	}
 	
 	@Test

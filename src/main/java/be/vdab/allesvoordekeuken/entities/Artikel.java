@@ -67,4 +67,8 @@ public abstract class Artikel implements Serializable{
 	public Set<Korting> getKortingen(){
 		return Collections.unmodifiableSet(kortingen);
 	}
+	
+	public boolean addKorting(Korting korting) {
+		return kortingen.add(korting);
+	}
 }

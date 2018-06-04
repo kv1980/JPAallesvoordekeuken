@@ -151,4 +151,12 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 		assertEquals(1,artikel.getKortingen().size());
 		assertTrue(artikel.getKortingen().contains(new Korting(10,BigDecimal.TEN)));
 	}
+	
+	@Test
+	public void kortingToevoegen() {
+		Artikel artikel = repository.read(idVanTestartikelFood()).get();
+		Korting korting = new Korting(25,BigDecimal.valueOf(33));
+		assertEquals(1,artikel.getKortingen().size());
+		assertTrue(artikel.getKortingen().contains(new Korting(10,BigDecimal.TEN)));
+	}
 }

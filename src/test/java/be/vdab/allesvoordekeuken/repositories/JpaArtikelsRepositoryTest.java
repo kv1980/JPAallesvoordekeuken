@@ -154,9 +154,9 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 	
 	@Test
 	public void kortingToevoegen() {
-		Artikel artikel = repository.read(idVanTestartikelFood()).get();
-		Korting korting = new Korting(25,BigDecimal.valueOf(33));
-		assertEquals(1,artikel.getKortingen().size());
-		assertTrue(artikel.getKortingen().contains(new Korting(10,BigDecimal.TEN)));
+		repository.create(foodArtikel);
+		foodArtikel.addKorting(new Korting(25,BigDecimal.valueOf(33)));
+		manager.flush();
+		assertEquals(BigDecimal.valueOf(33).setScale(2),super.jdbcTemplate.queryForObject("select percentage from kortingen where artikelid=? and vanafAantal=25",BigDecimal.class,foodArtikel.getId()));
 	}
 }

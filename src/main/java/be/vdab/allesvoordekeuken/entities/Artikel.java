@@ -69,6 +69,9 @@ public abstract class Artikel implements Serializable{
 	}
 	
 	public boolean addKorting(Korting korting) {
+		if(korting == null) {
+			throw new NullPointerException();
+		}
 		return kortingen.add(korting);
 	}
 }

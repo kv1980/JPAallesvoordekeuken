@@ -66,8 +66,8 @@ public class ArtikelTest {
 	@Test
 	public void artikelIsVerbondenMetArtikelgroep2NaVerandering() {
 		artikel1.setArtikelgroep(artikelgroep2);
-		assertNotEquals(artikel1.getArtikelgroep().getNaam(),"testGroep1");	
-		assertEquals(artikel1.getArtikelgroep().getNaam(),"testGroep2");	
+		assertNotEquals(artikel1.getArtikelgroep(),artikelgroep1);	
+		assertEquals(artikel1.getArtikelgroep(),artikelgroep2);	
 		assertFalse(artikelgroep1.getArtikels().contains(artikel1));
 		assertTrue(artikelgroep2.getArtikels().contains(artikel1));
 	}

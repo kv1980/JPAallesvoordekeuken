@@ -1,2 +1,2 @@
-insert into artikelgroep(naam)
+insert into artikelgroepen(naam)
 value('testgroep');

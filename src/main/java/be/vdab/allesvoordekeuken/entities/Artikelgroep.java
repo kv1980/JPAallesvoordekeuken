@@ -1,5 +1,6 @@
 package be.vdab.allesvoordekeuken.entities;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="artikelgroepen")
-public class Artikelgroep {
+public class Artikelgroep implements Serializable {
 	
 	//-------------------ATTRIBUTES--------------------
 	
@@ -38,6 +39,10 @@ public class Artikelgroep {
 	}
 	
 	//---------------------GETTERS---------------------
+	
+	public long getId() {
+		return id;
+	}
 	
 	public String getNaam() {
 		return naam;

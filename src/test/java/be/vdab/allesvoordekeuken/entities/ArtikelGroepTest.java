@@ -22,7 +22,7 @@ public class ArtikelGroepTest {
 	
 	@Test
 	public void nieuweArtikelgroepBevatGeenArtikels() {
-		assertEquals(0,new Artikelgroep("nieuwegroep").getArtikels().size());
+		assertTrue(new Artikelgroep("nieuwegroep").getArtikels().isEmpty());
 	}
 	
 	@Test
@@ -54,6 +54,4 @@ public class ArtikelGroepTest {
 		assertTrue(artikelgroep1.getArtikels().contains(artikel1));
 		assertTrue(artikelgroep1.getArtikels().contains(artikel2));
 	}
-	
-	
 }

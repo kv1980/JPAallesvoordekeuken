@@ -25,6 +25,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.junit4.SpringRunner;
 
 import be.vdab.allesvoordekeuken.entities.Artikel;
+import be.vdab.allesvoordekeuken.entities.Artikelgroep;
 import be.vdab.allesvoordekeuken.entities.FoodArtikel;
 import be.vdab.allesvoordekeuken.entities.NonFoodArtikel;
 import be.vdab.allesvoordekeuken.valueobjects.Korting;
@@ -42,11 +43,13 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 	private static final String ARTIKELS = "artikels";
 	private FoodArtikel foodArtikel;
 	private NonFoodArtikel nonFoodArtikel;
+	private Artikelgroep artikelgroep;
 	
 	@Before
 	public void before() {
-		foodArtikel = new FoodArtikel("testFood",BigDecimal.TEN,BigDecimal.TEN,14);
-		nonFoodArtikel = new NonFoodArtikel("testNonFood",BigDecimal.TEN,BigDecimal.TEN,12);
+		artikelgroep = new Artikelgroep("testgroep");
+		foodArtikel = new FoodArtikel("testFood",BigDecimal.TEN,BigDecimal.TEN,artikelgroep,14);
+		nonFoodArtikel = new NonFoodArtikel("testNonFood",BigDecimal.TEN,BigDecimal.TEN,artikelgroep,12);
 	}
 	
 	private long idVanTestartikelFood() {

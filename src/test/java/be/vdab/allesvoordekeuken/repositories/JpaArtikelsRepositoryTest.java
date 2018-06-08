@@ -202,4 +202,9 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 		assertEquals("testFood",super.jdbcTemplate.queryForObject(
 				"select naam from artikels where artikelgroepid=?",String.class,artikelgroep2.getId()));
 	}
+	
+	@Test public void artikelGroepLazyLoaded() {
+		Artikel artikel = repository.read(idVanTestartikelFood()).get();
+		assertEquals("testgroep", artikel.getArtikelgroep().getNaam()); 
+		} 
 }

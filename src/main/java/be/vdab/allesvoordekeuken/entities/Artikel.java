@@ -18,6 +18,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -27,11 +29,13 @@ import be.vdab.allesvoordekeuken.valueobjects.Korting;
 @Table(name = "artikels")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "soort")
+@NamedEntityGraph (name = Artikel.MET_ARTIKELGROEP, attributeNodes = @NamedAttributeNode("artikelgroep"))
 public abstract class Artikel implements Serializable {
 
 	// -------------------ATTRIBUTES--------------------
 
 	private static final long serialVersionUID = 1L;
+	public static final String MET_ARTIKELGROEP = "Artikel.metArtikelgroep";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

@@ -134,12 +134,16 @@ public class JpaArtikelsRepositoryTest extends AbstractTransactionalJUnit4Spring
 	@Test
 	public void findByWoord_geeft_lijst_met_artikels_met_woord_in_de_naam() {
 		List<Artikel> artikels = repository.findByWoord("testartikel");
+		manager.clear();
 		assertEquals(2,artikels.size());
 		String vorigeArtikelNaam = "";
 		artikels.forEach(artikel -> {
 			assertTrue(artikel.getNaam().toLowerCase().contains("testartikel"));
 			assertTrue(artikel.getNaam().compareToIgnoreCase(vorigeArtikelNaam) >= 0);
+			System.out.println(artikel.getNaam()+" heeft als artikelgroep "+artikel.getArtikelgroep().getNaam());
 		});
+		
+
 	}
 	
 	@Test

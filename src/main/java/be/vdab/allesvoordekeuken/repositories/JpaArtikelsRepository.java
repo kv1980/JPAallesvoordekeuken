@@ -36,6 +36,7 @@ class JpaArtikelsRepository implements ArtikelsRepository {
 	@Override
 	public List<Artikel> findByWoord(String woord) {
 		return manager.createNamedQuery("Artikel.findByWoord",Artikel.class)
+					  .setHint("javax.persistence.loadgraph",manager.createEntityGraph(Artikel.MET_ARTIKELGROEP))
 				      .setParameter("patroon","%"+woord+"%")
 				      .getResultList();
 	}
